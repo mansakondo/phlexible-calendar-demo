@@ -1,7 +1,7 @@
 module Views
   class Calendar < PhlexibleCalendar::Views::Calendar
     def template(&block)
-      div class: "flex justify-center", data: { controller: "events", action: "mouseup->events#stopResize"} do
+      div class: "flex justify-center" do
         div class: "flex flex-col" do
           div class: "flex ml-16 py-8"do
             date_range.slice(0, 7).each do |day|
@@ -34,18 +34,18 @@ module Views
                   times_for_quarter_hours(day).each_slice(4) do |times|
                     div class: "relative h-14 border" do
                       times.each_with_index do |time, i|
-                        div class: "w-full", style: "height: 25%; top: #{25*i}%;", data: { action: "drop->events#drop dragover->events#setDropEffect", date: time.to_date, events_target: "eventSlot", time: time.strftime("%H:%M:%S %Z") } do
+                        div class: "w-full", style: "height: 25%; top: #{25*i}%;" do
                           if block_given?
                             block.call sorted_events.fetch(time, [])
                           else
                             sorted_events.fetch(time, []).each_with_index do |event, i|
-                              div id: event.send(start_attribute), class: "absolute flex justify-center items-center cursor-grab bg-gray-900 text-white text-xs rounded", style: "height: #{event.height_in_percentage}%; width: calc(100% - #{(i) * 10}px); z-index: #{i+1};#{(" border: groove;" if i > 0)} cursor: grab", draggable: "true", data: { date: time.to_date, time: event.send(start_attribute).strftime("%H:%M:%S %Z"), event_id: event.id, action: "dragstart->events#startDrag" } do
-                                div class: "absolute w-full", style: "height: 12px; bottom: 100%; cursor: row-resize", data: { action: "mousedown->events#startResize" } do
+                              div id: event.send(start_attribute), class: "absolute flex justify-center items-center cursor-grab bg-gray-900 text-white text-xs rounded", style: "height: #{event.height_in_percentage}%; width: calc(100% - #{(i) * 10}px); z-index: #{i+1};#{(" border: groove;" if i > 0)} cursor: grab", draggable: "true" do
+                                div class: "absolute w-full", style: "height: 12px; bottom: 100%; cursor: row-resize" do
                                 end
                                 span do
                                   event.name
                                 end
-                                div class: "absolute w-full", style: "height: 12px; top: 100%; cursor: row-resize", data: { action: "mousedown->events#startResize" } do
+                                div class: "absolute w-full", style: "height: 12px; top: 100%; cursor: row-resize" do
                                 end
                               end
                             end
