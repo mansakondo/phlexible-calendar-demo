@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name":"stimulus_rephlex_calendar",
   "private": "true",
   "dependencies": {
     "@hotwired/stimulus": "^3.1.0",
