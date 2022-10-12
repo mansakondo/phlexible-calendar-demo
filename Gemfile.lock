@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mansakondo/phlexible_calendar.git
-  revision: 6d78a7c8d1fd65f088926c00e2b8de6b3bbdd591
+  revision: 13f0fbba819526cdc08f31762c7579350d4d1f28
   specs:
     phlexible_calendar (0.1.0)
       phlex (>= 0.3.0)

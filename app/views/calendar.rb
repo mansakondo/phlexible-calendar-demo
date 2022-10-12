@@ -20,10 +20,10 @@ module Views
           div class: "overflow-auto h-[520px]" do
             div class: "flex" do
               div class: "flex flex-col w-16" do
-                HOURS.each_with_index do |hour, i|
+                self.class.hours.each_with_index do |hour, i|
                   div class: "relative h-14" do
                     span class: "absolute bottom-12 text-xs text-gray-600" do
-                      hour
+                      hour if i > 0
                     end
                   end
                 end
@@ -61,11 +61,11 @@ module Views
 
           div class: "flex justify-around items-center mt-4" do
             a href: url_for_previous_view, class: "flex justify-center items-center h-10 w-10 bg-gray-900 text-white rounded-full " do
-              t("simple_calendar.previous", default: "<")
+              t("phlexible_calendar.previous", default: "<")
             end
 
             a href: url_for_next_view, class: "flex justify-center items-center h-10 w-10 bg-gray-900 text-white rounded-full " do
-              t("simple_calendar.next", default: ">")
+              t("phlexible_calendar.next", default: ">")
             end
           end
         end

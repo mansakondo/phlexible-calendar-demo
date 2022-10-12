@@ -516,10 +516,6 @@ video {
   bottom: 3rem;
 }
 
-.z-10 {
-  z-index: 10;
-}
-
 .ml-16 {
   margin-left: 4rem;
 }
@@ -536,8 +532,8 @@ video {
   display: flex;
 }
 
-.h-\[540px\] {
-  height: 540px;
+.h-\[520px\] {
+  height: 520px;
 }
 
 .h-14 {
@@ -618,6 +614,11 @@ video {
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 .text-white {
