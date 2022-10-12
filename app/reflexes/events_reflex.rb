@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class EventsReflex < ApplicationReflex
-  def resize(event_id, selected_date, new_time)
+  def resize(event_id, selected_date, new_time, position)
     if event_id.present? && (event = Event.find(event_id))
-      selected_date = Date.parse selected_date
-      new_time = Time.parse(new_time, selected_date)
+      new_time = Time.parse(new_time, Date.parse(selected_date))
 
-      if new_time < event.start_time
-        time_attribute = event.start_attribute
-      else
+      case position
+      when "end"
         time_attribute = event.end_attribute
+      when "start"
+        time_attribute = event.start_attribute
       end
 
       event.update(:"#{time_attribute}" => new_time)

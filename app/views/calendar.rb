@@ -40,12 +40,12 @@ module Views
                           else
                             sorted_events.fetch(time, []).each_with_index do |event, i|
                               div id: event.send(start_attribute), class: "absolute flex justify-center items-center cursor-grab bg-gray-900 text-white text-xs rounded", style: "height: #{event.height_in_percentage}%; width: calc(100% - #{(i) * 10}px); z-index: #{i+1};#{(" border: groove;" if i > 0)} cursor: grab", draggable: "true", data: { date: time.to_date, time: event.send(start_attribute).strftime("%H:%M:%S %Z"), event_id: event.id, action: "dragstart->events#startDrag" } do
-                                div class: "absolute w-full", style: "height: 12px; bottom: 100%; cursor: row-resize", data: { action: "mousedown->events#startResize" } do
+                                div class: "absolute w-full", style: "height: 12px; bottom: 100%; cursor: row-resize", data: { action: "mousedown->events#startResize", events_position_param: "start" } do
                                 end
                                 span do
                                   event.name
                                 end
-                                div class: "absolute w-full", style: "height: 12px; top: 100%; cursor: row-resize", data: { action: "mousedown->events#startResize" } do
+                                div class: "absolute w-full", style: "height: 12px; top: 100%; cursor: row-resize", data: { action: "mousedown->events#startResize", events_position_param: "end" } do
                                 end
                               end
                             end

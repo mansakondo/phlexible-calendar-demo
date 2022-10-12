@@ -9,11 +9,13 @@ export default class extends ApplicationController {
 
   startResize(event) {
     event.preventDefault()
-    const target = event.target.closest("[data-event-id]")
-    const { date, eventId } = target.dataset
+    const calendarEventTarget = event.target.closest("[data-event-id]")
+    const { date, eventId } = calendarEventTarget.dataset
+    const { position } = event.params
 
     this.selectedDate = date
-    this.selectedEvent = target
+    this.selectedEvent = calendarEventTarget
+    this.resizeStartPostion = position
     this.resizeEvent = this.resizeEvent.bind(this)
 
     this.eventSlotTargets.forEach((eventSlotTarget) => {
@@ -22,15 +24,16 @@ export default class extends ApplicationController {
   }
 
   resizeEvent(event) {
-    const { time } = event.target.dataset
-    if (!time) {
+    const target = event.target
+
+    if (target.dataset.eventsTarget == "eventSlot") {
+      const { time } = target.dataset
+      const selectedEventId = this.selectedEvent.dataset.eventId
+      this.stimulate("Events#resize", selectedEventId, this.selectedDate, time, this.resizeStartPostion)
+    } else {
       event.preventDefault()
       return
     }
-
-    const selectedEventId = this.selectedEvent.dataset.eventId
-
-    this.stimulate("Events#resize", selectedEventId, this.selectedDate, time)
   }
 
   stopResize() {
